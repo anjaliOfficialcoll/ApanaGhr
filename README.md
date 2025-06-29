@@ -8,7 +8,7 @@
 
 ## 🌐 Live Demo
 
-🔗 [Click here to view the live site]([https://apana-ghar-six.vercel.app](https://apana-ghr-six.vercel.app/))
+🔗 [Click here to view the live site](https://apana-ghr-six.vercel.app/)
 
 ---
 
