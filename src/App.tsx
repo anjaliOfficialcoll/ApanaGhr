@@ -1,397 +1,7 @@
+
+import logo from './assets/logo.png'; // Adjust the path if needed
 import React, { useState, useEffect } from 'react';
-import { Moon, Sun, Mail, Home, Users, Bot, Sparkles, Check, ArrowRight, Star, Zap, Shield, Heart, Instagram, Twitter, Linkedin, ArrowUp, MessageCircle, MapPin, Clock, UserPlus, LogIn, CheckCircle, Search, Handshake, Timer, Building, Brain, Lock, User, Smartphone, Monitor, Building2, UserCheck, Key, Bed, Wifi, Car, Play, X, ChevronRight, Filter, MapPin as Location, IndianRupee, Calendar, Phone, Star as StarIcon } from 'lucide-react';
-
-// Demo Modal Component
-const DemoModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [demoProfile, setDemoProfile] = useState({
-    name: 'Alex Kumar',
-    age: 24,
-    profession: 'Software Engineer',
-    budget: '15000',
-    location: 'Bangalore',
-    preferences: ['Non-smoker', 'Pet-friendly', 'Gym nearby']
-  });
-
-  const demoListings = [
-    {
-      id: 1,
-      title: 'Modern 2BHK near Tech Park',
-      location: 'Koramangala, Bangalore',
-      price: '₹14,000',
-      rating: 4.8,
-      image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=400',
-      amenities: ['WiFi', 'AC', 'Parking', 'Gym'],
-      roommates: 2,
-      matchScore: 95
-    },
-    {
-      id: 2,
-      title: 'Cozy PG with Great Community',
-      location: 'HSR Layout, Bangalore',
-      price: '₹12,500',
-      rating: 4.6,
-      image: 'https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&w=400',
-      amenities: ['WiFi', 'Meals', 'Laundry', 'Security'],
-      roommates: 3,
-      matchScore: 88
-    },
-    {
-      id: 3,
-      title: 'Spacious Flat with Balcony',
-      location: 'Indiranagar, Bangalore',
-      price: '₹16,000',
-      rating: 4.9,
-      image: 'https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?auto=compress&cs=tinysrgb&w=400',
-      amenities: ['WiFi', 'AC', 'Balcony', 'Kitchen'],
-      roommates: 1,
-      matchScore: 92
-    }
-  ];
-
-  const demoRoommates = [
-    {
-      id: 1,
-      name: 'Priya Sharma',
-      age: 23,
-      profession: 'Designer',
-      interests: ['Reading', 'Yoga', 'Cooking'],
-      matchScore: 94,
-      avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100'
-    },
-    {
-      id: 2,
-      name: 'Rahul Gupta',
-      age: 25,
-      profession: 'Marketing Manager',
-      interests: ['Fitness', 'Movies', 'Travel'],
-      matchScore: 89,
-      avatar: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=100'
-    }
-  ];
-
-  const steps = [
-    {
-      title: 'Create Your Profile',
-      component: (
-        <div className="space-y-4">
-          <div className="text-center mb-6">
-            <div className="w-20 h-20 bg-gradient-to-r from-brand-primary to-brand-accent rounded-full mx-auto mb-4 flex items-center justify-center">
-              <User className="w-10 h-10 text-white" />
-            </div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">Tell us about yourself</h3>
-            <p className="text-gray-600 text-sm">Help us find your perfect match</p>
-          </div>
-          
-          <div className="space-y-3">
-            <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-              <User className="w-5 h-5 text-brand-primary" />
-              <div>
-                <div className="font-medium text-gray-800">{demoProfile.name}</div>
-                <div className="text-sm text-gray-600">{demoProfile.age} years old</div>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-              <Building className="w-5 h-5 text-brand-primary" />
-              <div>
-                <div className="font-medium text-gray-800">{demoProfile.profession}</div>
-                <div className="text-sm text-gray-600">Working professional</div>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-              <IndianRupee className="w-5 h-5 text-brand-primary" />
-              <div>
-                <div className="font-medium text-gray-800">₹{demoProfile.budget}/month</div>
-                <div className="text-sm text-gray-600">Budget range</div>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-              <Location className="w-5 h-5 text-brand-primary" />
-              <div>
-                <div className="font-medium text-gray-800">{demoProfile.location}</div>
-                <div className="text-sm text-gray-600">Preferred location</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
-    },
-    {
-      title: 'AI Finds Perfect Matches',
-      component: (
-        <div className="space-y-4">
-          <div className="text-center mb-6">
-            <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-              <Bot className="w-10 h-10 text-white" />
-            </div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">AI-Powered Matching</h3>
-            <p className="text-gray-600 text-sm">Finding compatible options for you...</p>
-          </div>
-          
-          <div className="space-y-3 max-h-64 overflow-y-auto">
-            {demoListings.map((listing) => (
-              <div key={listing.id} className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
-                <div className="flex space-x-3">
-                  <img 
-                    src={listing.image} 
-                    alt={listing.title}
-                    className="w-16 h-16 rounded-lg object-cover"
-                  />
-                  <div className="flex-1">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <h4 className="font-medium text-gray-800 text-sm">{listing.title}</h4>
-                        <p className="text-xs text-gray-600 flex items-center mt-1">
-                          <Location className="w-3 h-3 mr-1" />
-                          {listing.location}
-                        </p>
-                      </div>
-                      <div className="text-right">
-                        <div className="font-semibold text-brand-primary text-sm">{listing.price}</div>
-                        <div className="flex items-center text-xs">
-                          <StarIcon className="w-3 h-3 text-yellow-400 fill-current mr-1" />
-                          {listing.rating}
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center justify-between mt-2">
-                      <div className="flex space-x-1">
-                        {listing.amenities.slice(0, 3).map((amenity) => (
-                          <span key={amenity} className="px-2 py-1 bg-gray-100 text-xs rounded">
-                            {amenity}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span className="text-xs text-green-600 font-medium">{listing.matchScore}% match</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )
-    },
-    {
-      title: 'Connect with Roommates',
-      component: (
-        <div className="space-y-4">
-          <div className="text-center mb-6">
-            <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-              <MessageCircle className="w-10 h-10 text-white" />
-            </div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">Meet Your Matches</h3>
-            <p className="text-gray-600 text-sm">Connect with compatible roommates</p>
-          </div>
-          
-          <div className="space-y-3">
-            {demoRoommates.map((roommate) => (
-              <div key={roommate.id} className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
-                <div className="flex items-center space-x-3">
-                  <img 
-                    src={roommate.avatar} 
-                    alt={roommate.name}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="font-medium text-gray-800">{roommate.name}</h4>
-                        <p className="text-sm text-gray-600">{roommate.profession}, {roommate.age}</p>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span className="text-sm text-green-600 font-medium">{roommate.matchScore}%</span>
-                      </div>
-                    </div>
-                    <div className="flex space-x-1 mt-2">
-                      {roommate.interests.map((interest) => (
-                        <span key={interest} className="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded">
-                          {interest}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="mt-3 flex space-x-2">
-                  <button className="flex-1 px-3 py-2 bg-brand-primary text-white text-sm rounded-lg hover:bg-brand-accent transition-colors">
-                    <MessageCircle className="w-4 h-4 inline mr-1" />
-                    Chat
-                  </button>
-                  <button className="px-3 py-2 border border-gray-300 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors">
-                    <Phone className="w-4 h-4 inline mr-1" />
-                    Call
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )
-    },
-    {
-      title: 'Book Your Perfect Home',
-      component: (
-        <div className="space-y-4">
-          <div className="text-center mb-6">
-            <div className="w-20 h-20 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-              <Home className="w-10 h-10 text-white" />
-            </div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">Secure Your Booking</h3>
-            <p className="text-gray-600 text-sm">Complete your move-in process</p>
-          </div>
-          
-          <div className="bg-gradient-to-r from-green-50 to-green-100 p-4 rounded-lg border border-green-200">
-            <div className="flex items-center space-x-3 mb-4">
-              <img 
-                src={demoListings[0].image} 
-                alt="Selected property"
-                className="w-16 h-16 rounded-lg object-cover"
-              />
-              <div>
-                <h4 className="font-semibold text-gray-800">{demoListings[0].title}</h4>
-                <p className="text-sm text-gray-600">{demoListings[0].location}</p>
-                <p className="text-lg font-bold text-brand-primary">{demoListings[0].price}/month</p>
-              </div>
-            </div>
-            
-            <div className="space-y-3">
-              <div className="flex items-center space-x-2">
-                <Check className="w-5 h-5 text-green-600" />
-                <span className="text-sm text-gray-700">Background verification completed</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Check className="w-5 h-5 text-green-600" />
-                <span className="text-sm text-gray-700">Roommate compatibility confirmed</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Check className="w-5 h-5 text-green-600" />
-                <span className="text-sm text-gray-700">Move-in date scheduled</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Calendar className="w-5 h-5 text-brand-primary" />
-                <span className="text-sm text-gray-700">Move-in: Next Monday</span>
-              </div>
-            </div>
-            
-            <button className="w-full mt-4 px-4 py-3 bg-gradient-to-r from-brand-primary to-brand-accent text-white font-semibold rounded-lg hover:from-brand-accent hover:to-brand-highlight transition-all duration-300">
-              Complete Booking
-            </button>
-          </div>
-        </div>
-      )
-    }
-  ];
-
-  const nextStep = () => {
-    if (currentStep < steps.length) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  const prevStep = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
-
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <div>
-            <h2 className="text-2xl font-bold text-gray-800 font-poppins">ApanaGhr Demo</h2>
-            <p className="text-gray-600 text-sm">Experience the future of room finding</p>
-          </div>
-          <button
-            onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-          >
-            <X className="w-6 h-6 text-gray-600" />
-          </button>
-        </div>
-
-        {/* Progress Bar */}
-        <div className="px-6 py-4 bg-gray-50">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-700">Step {currentStep} of {steps.length}</span>
-            <span className="text-sm text-gray-500">{Math.round((currentStep / steps.length) * 100)}% Complete</span>
-          </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
-            <div 
-              className="bg-gradient-to-r from-brand-primary to-brand-accent h-2 rounded-full transition-all duration-500"
-              style={{ width: `${(currentStep / steps.length) * 100}%` }}
-            ></div>
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="p-6 overflow-y-auto max-h-96">
-          <div className="mb-4">
-            <h3 className="text-xl font-semibold text-gray-800 mb-2 font-poppins">
-              {steps[currentStep - 1].title}
-            </h3>
-          </div>
-          {steps[currentStep - 1].component}
-        </div>
-
-        {/* Footer */}
-        <div className="flex items-center justify-between p-6 border-t border-gray-200 bg-gray-50">
-          <button
-            onClick={prevStep}
-            disabled={currentStep === 1}
-            className="px-4 py-2 text-gray-600 hover:text-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          >
-            Previous
-          </button>
-          
-          <div className="flex space-x-2">
-            {steps.map((_, index) => (
-              <div
-                key={index}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  index + 1 === currentStep 
-                    ? 'bg-brand-primary' 
-                    : index + 1 < currentStep 
-                      ? 'bg-brand-accent' 
-                      : 'bg-gray-300'
-                }`}
-              />
-            ))}
-          </div>
-          
-          {currentStep < steps.length ? (
-            <button
-              onClick={nextStep}
-              className="px-6 py-2 bg-gradient-to-r from-brand-primary to-brand-accent text-white font-semibold rounded-lg hover:from-brand-accent hover:to-brand-highlight transition-all duration-300 flex items-center space-x-2"
-            >
-              <span>Next</span>
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          ) : (
-            <button
-              onClick={onClose}
-              className="px-6 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-lg hover:from-green-600 hover:to-green-700 transition-all duration-300"
-            >
-              Get Started Now
-            </button>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
+import { Moon, Sun, Mail, Home, Users, Bot, Sparkles, Check, ArrowRight, Star, Zap, Shield, Heart, Instagram, Twitter, Linkedin, ArrowUp, MessageCircle, MapPin, Clock, UserPlus, LogIn, CheckCircle, Search, Handshake, Timer, Building, Brain, Lock, User, Smartphone, Monitor, Building2, UserCheck, Key, Bed, Wifi, Car, Menu, X, Phone, MapPin as Location, HelpCircle, Info } from 'lucide-react';
 
 // Housing-themed floating elements
 const HousingFloatingElement = ({ className, delay = 0, children, type = 'default' }: { 
@@ -508,6 +118,317 @@ const FloatingElement = ({ className, delay = 0, children }: {
     {children || <div className="w-2 h-2 bg-gradient-to-r from-brand-accent to-brand-highlight rounded-full opacity-20 dark:from-brand-dark-primary dark:to-brand-dark-secondary"></div>}
   </div>
 );
+
+// Demo Modal Component
+const DemoModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [progress, setProgress] = useState(0);
+
+  const demoSteps = [
+    {
+      title: "Create Your Profile",
+      subtitle: "Tell us about yourself and preferences",
+      content: (
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-2xl p-6">
+          <div className="text-center mb-6">
+            <div className="w-20 h-20 bg-gradient-to-r from-brand-primary to-brand-accent rounded-full mx-auto mb-4 flex items-center justify-center">
+              <User className="w-10 h-10 text-white" />
+            </div>
+            <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">Alex Kumar</h3>
+            <p className="text-gray-600 dark:text-gray-300">Software Engineer</p>
+          </div>
+          
+          <div className="space-y-4">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600 dark:text-gray-300">Budget Range</span>
+                <span className="font-semibold text-brand-primary">₹15,000 - ₹25,000</span>
+              </div>
+            </div>
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600 dark:text-gray-300">Preferred Location</span>
+                <span className="font-semibold text-brand-primary">Koramangala, Bangalore</span>
+              </div>
+            </div>
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600 dark:text-gray-300">Room Type</span>
+                <span className="font-semibold text-brand-primary">Single Occupancy</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      title: "AI Finds Perfect Matches",
+      subtitle: "Our AI analyzes thousands of options for you",
+      content: (
+        <div className="space-y-4">
+          {[
+            {
+              image: "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=400",
+              title: "Modern PG in Koramangala",
+              price: "₹18,000/month",
+              rating: 4.8,
+              match: "95%",
+              amenities: ["WiFi", "AC", "Parking", "Laundry"]
+            },
+            {
+              image: "https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&w=400",
+              title: "Cozy Flat Share",
+              price: "₹22,000/month",
+              rating: 4.6,
+              match: "88%",
+              amenities: ["WiFi", "Kitchen", "Gym", "Security"]
+            }
+          ].map((property, index) => (
+            <div key={index} className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-100 dark:border-gray-700">
+              <div className="flex space-x-4">
+                <img 
+                  src={property.image} 
+                  alt={property.title}
+                  className="w-20 h-20 rounded-lg object-cover"
+                />
+                <div className="flex-1">
+                  <div className="flex justify-between items-start mb-2">
+                    <h4 className="font-semibold text-gray-800 dark:text-white">{property.title}</h4>
+                    <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-semibold">
+                      {property.match} Match
+                    </span>
+                  </div>
+                  <p className="text-brand-primary font-bold mb-2">{property.price}</p>
+                  <div className="flex items-center space-x-2 mb-2">
+                    <div className="flex items-center">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className={`w-3 h-3 ${i < Math.floor(property.rating) ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
+                      ))}
+                    </div>
+                    <span className="text-sm text-gray-600 dark:text-gray-300">{property.rating}</span>
+                  </div>
+                  <div className="flex flex-wrap gap-1">
+                    {property.amenities.map((amenity, i) => (
+                      <span key={i} className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded">
+                        {amenity}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )
+    },
+    {
+      title: "Connect with Roommates",
+      subtitle: "Chat with verified, compatible roommates",
+      content: (
+        <div className="space-y-4">
+          {[
+            {
+              name: "Priya Sharma",
+              profession: "Marketing Manager",
+              interests: ["Reading", "Yoga", "Cooking"],
+              compatibility: "92%",
+              image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              name: "Rahul Gupta",
+              profession: "Data Analyst",
+              interests: ["Gaming", "Movies", "Fitness"],
+              compatibility: "87%",
+              image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400"
+            }
+          ].map((roommate, index) => (
+            <div key={index} className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-100 dark:border-gray-700">
+              <div className="flex items-center space-x-4">
+                <img 
+                  src={roommate.image} 
+                  alt={roommate.name}
+                  className="w-16 h-16 rounded-full object-cover"
+                />
+                <div className="flex-1">
+                  <div className="flex justify-between items-start mb-1">
+                    <h4 className="font-semibold text-gray-800 dark:text-white">{roommate.name}</h4>
+                    <span className="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">
+                      {roommate.compatibility} Compatible
+                    </span>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">{roommate.profession}</p>
+                  <div className="flex flex-wrap gap-1 mb-3">
+                    {roommate.interests.map((interest, i) => (
+                      <span key={i} className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">
+                        {interest}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex space-x-2">
+                    <button className="flex-1 bg-brand-primary text-white text-sm py-2 px-3 rounded-lg hover:bg-brand-accent transition-colors">
+                      <MessageCircle className="w-4 h-4 inline mr-1" />
+                      Chat
+                    </button>
+                    <button className="flex-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm py-2 px-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                      <Phone className="w-4 h-4 inline mr-1" />
+                      Call
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )
+    },
+    {
+      title: "Book Your Perfect Home",
+      subtitle: "Secure your spot with verified booking",
+      content: (
+        <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-2xl p-6">
+          <div className="text-center mb-6">
+            <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+              <Home className="w-10 h-10 text-white" />
+            </div>
+            <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">Booking Confirmed!</h3>
+            <p className="text-gray-600 dark:text-gray-300">Modern PG in Koramangala</p>
+          </div>
+          
+          <div className="space-y-3">
+            {[
+              "Identity Verification Complete",
+              "Payment Processing Secure",
+              "Move-in Date Scheduled",
+              "Welcome Kit Prepared"
+            ].map((item, index) => (
+              <div key={index} className="flex items-center space-x-3 bg-white dark:bg-gray-800 rounded-lg p-3">
+                <Check className="w-5 h-5 text-green-500" />
+                <span className="text-gray-700 dark:text-gray-300">{item}</span>
+              </div>
+            ))}
+          </div>
+          
+          <div className="mt-6 p-4 bg-white dark:bg-gray-800 rounded-lg">
+            <div className="flex justify-between items-center">
+              <span className="text-gray-600 dark:text-gray-300">Move-in Date</span>
+              <span className="font-semibold text-brand-primary">March 15, 2025</span>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  ];
+
+  useEffect(() => {
+    if (isOpen) {
+      setProgress((currentStep + 1) / demoSteps.length * 100);
+    }
+  }, [currentStep, isOpen]);
+
+  const nextStep = () => {
+    if (currentStep < demoSteps.length - 1) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const prevStep = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <div className="bg-white dark:bg-brand-dark-card rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
+        {/* Header */}
+        <div className="p-6 border-b border-gray-200 dark:border-brand-dark-border">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-bold text-brand-heading dark:text-brand-dark-heading font-poppins">
+              Try ApanaGhr Demo
+            </h2>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            >
+              <X className="w-5 h-5 text-gray-500" />
+            </button>
+          </div>
+          
+          {/* Progress Bar */}
+          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-2">
+            <div 
+              className="bg-gradient-to-r from-brand-primary to-brand-accent h-2 rounded-full transition-all duration-500"
+              style={{ width: `${progress}%` }}
+            ></div>
+          </div>
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            Step {currentStep + 1} of {demoSteps.length}
+          </p>
+        </div>
+
+        {/* Content */}
+        <div className="p-6 overflow-y-auto max-h-96">
+          <div className="text-center mb-6">
+            <h3 className="text-xl font-bold text-brand-heading dark:text-brand-dark-heading mb-2 font-poppins">
+              {demoSteps[currentStep].title}
+            </h3>
+            <p className="text-brand-body dark:text-brand-dark-body font-open-sans">
+              {demoSteps[currentStep].subtitle}
+            </p>
+          </div>
+          
+          <div className="animate-fade-in">
+            {demoSteps[currentStep].content}
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="p-6 border-t border-gray-200 dark:border-brand-dark-border flex justify-between items-center">
+          <button
+            onClick={prevStep}
+            disabled={currentStep === 0}
+            className="px-4 py-2 text-gray-600 dark:text-gray-400 hover:text-brand-primary dark:hover:text-brand-dark-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-poppins"
+          >
+            Previous
+          </button>
+          
+          <div className="flex space-x-2">
+            {demoSteps.map((_, index) => (
+              <div
+                key={index}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentStep 
+                    ? 'bg-brand-primary' 
+                    : index < currentStep 
+                      ? 'bg-brand-accent' 
+                      : 'bg-gray-300 dark:bg-gray-600'
+                }`}
+              />
+            ))}
+          </div>
+          
+          {currentStep < demoSteps.length - 1 ? (
+            <button
+              onClick={nextStep}
+              className="px-6 py-2 bg-gradient-to-r from-brand-primary to-brand-accent text-white font-semibold rounded-lg hover:from-brand-accent hover:to-brand-highlight transition-all duration-300 font-poppins"
+            >
+              Next
+            </button>
+          ) : (
+            <button
+              onClick={onClose}
+              className="px-6 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 font-poppins"
+            >
+              Get Started
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 // Enhanced Feature card component with illustrations
 const FeatureCard = ({ 
@@ -916,6 +837,13 @@ const Footer = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="bg-brand-primary text-white relative overflow-hidden">
       {/* Background Pattern */}
@@ -930,12 +858,15 @@ const Footer = () => {
           
           {/* Brand Section */}
           <div className="lg:col-span-1">
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-r from-brand-accent to-brand-highlight rounded-lg flex items-center justify-center">
-                <Home className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-xl font-bold font-poppins">ApanaGhr</span>
-            </div>
+            <div className="flex items-center space-x-2 group">
+  <img
+    src={logo}
+    alt="ApanaGhr Logo"
+    className="w-10 h-10 rounded-xl shadow-lg object-contain bg-white"
+    style={{ background: 'none' }}
+  />
+  <span className="text-2xl font-bold text-brand-heading dark:text-brand-dark-heading font-poppins">ApanaGhr</span>
+</div>
             <p className="text-gray-300 font-open-sans text-sm leading-relaxed mb-6">
               Finding your perfect living space made simple and secure.
             </p>
@@ -964,7 +895,11 @@ const Footer = () => {
                 <Linkedin className="w-4 h-4" />
               </a>
               <a 
-                href="#" 
+                href="#contact" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection('contact');
+                }}
                 className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors duration-300"
                 aria-label="Email"
               >
@@ -978,7 +913,14 @@ const Footer = () => {
             <h3 className="text-base font-semibold font-poppins mb-4">Company</h3>
             <ul className="space-y-3 font-open-sans text-sm">
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">
+                <a 
+                  href="#about" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('about');
+                  }}
+                  className="text-gray-300 hover:text-white transition-colors duration-300"
+                >
                   About Us
                 </a>
               </li>
@@ -993,7 +935,14 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">
+                <a 
+                  href="#contact" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('contact');
+                  }}
+                  className="text-gray-300 hover:text-white transition-colors duration-300"
+                >
                   Contact
                 </a>
               </li>
@@ -1081,7 +1030,8 @@ function App() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isLoading, setIsLoading] = useState(false);
-  const [isDemoOpen, setIsDemoOpen] = useState(false);
+  const [showDemo, setShowDemo] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Mouse tracking for interactive background
   useEffect(() => {
@@ -1122,24 +1072,17 @@ function App() {
     // Add login logic here
   };
 
-  const handleGetStarted = () => {
-    // Scroll to email signup section
-    const emailSection = document.getElementById('email-signup');
-    if (emailSection) {
-      emailSection.scrollIntoView({ behavior: 'smooth' });
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  const handleTryDemo = () => {
-    setIsDemoOpen(true);
+    setMobileMenuOpen(false);
   };
 
   return (
     <div className={darkMode ? 'dark' : ''}>
       <div className="min-h-screen bg-brand-background dark:bg-brand-dark-background transition-all duration-700 relative overflow-hidden">
-        
-        {/* Demo Modal */}
-        <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
         
         {/* Enhanced Housing-Themed Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -1179,32 +1122,81 @@ function App() {
           <div className="absolute bottom-24 left-1/4 w-12 h-12 border-2 border-brand-highlight/15 rounded-full animate-float" style={{ animationDelay: '5s' }}></div>
         </div>
 
-        {/* Enhanced Header with Auth Buttons */}
+        {/* Enhanced Header with Navigation */}
         <header className="relative z-10 p-4 animate-fade-in">
           <div className="max-w-7xl mx-auto flex justify-between items-center">
             {/* Logo */}
-            <div className="flex items-center space-x-2 group">
-              <div className="w-10 h-10 bg-gradient-to-r from-brand-primary to-brand-accent rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Home className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-2xl font-bold text-brand-heading dark:text-brand-dark-heading font-poppins">ApanaGhr</span>
-            </div>
+           <div className="flex items-center space-x-2 group">
+  <img
+    src={logo}
+    alt="ApanaGhr Logo"
+    className="w-10 h-10 rounded-xl shadow-lg object-contain bg-white"
+    style={{ background: 'none' }}
+  />
+  <span className="text-2xl font-bold text-brand-heading dark:text-brand-dark-heading font-poppins">ApanaGhr</span>
+</div>
             
-            {/* Right Side - Auth Buttons + Dark Mode Toggle */}
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center space-x-8">
+              <a 
+                href="#features" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection('features');
+                }}
+                className="text-brand-body dark:text-brand-dark-body hover:text-brand-primary dark:hover:text-brand-dark-primary transition-colors duration-300 font-poppins font-medium"
+              >
+                Features
+              </a>
+              <a 
+                href="#how-it-works" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection('how-it-works');
+                }}
+                className="text-brand-body dark:text-brand-dark-body hover:text-brand-primary dark:hover:text-brand-dark-primary transition-colors duration-300 font-poppins font-medium"
+              >
+                How It Works
+              </a>
+              <a 
+                href="#about" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection('about');
+                }}
+                className="text-brand-body dark:text-brand-dark-body hover:text-brand-primary dark:hover:text-brand-dark-primary transition-colors duration-300 font-poppins font-medium"
+              >
+                About
+              </a>
+              <a 
+                href="#contact" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection('contact');
+                }}
+                className="text-brand-body dark:text-brand-dark-body hover:text-brand-primary dark:hover:text-brand-dark-primary transition-colors duration-300 font-poppins font-medium"
+              >
+                Contact
+              </a>
+            </nav>
+            
+            {/* Right Side - Auth Buttons + Dark Mode Toggle + Mobile Menu */}
             <div className="flex items-center space-x-3">
-              {/* Login Button */}
+              
+
+              {/* Login Button - Desktop */}
               <button
                 onClick={handleLogin}
-                className="flex items-center space-x-2 px-4 py-2 text-sm text-brand-heading dark:text-brand-dark-heading hover:text-brand-primary dark:hover:text-brand-dark-primary transition-colors duration-300 font-poppins font-medium"
+                className="hidden lg:flex items-center space-x-2 px-4 py-2 text-sm text-brand-heading dark:text-brand-dark-heading hover:text-brand-primary dark:hover:text-brand-dark-primary transition-colors duration-300 font-poppins font-medium"
               >
                 <LogIn className="w-4 h-4" />
                 <span>Login</span>
               </button>
 
-              {/* Signup Button */}
+              {/* Signup Button - Desktop */}
               <button
                 onClick={handleSignup}
-                className="flex items-center space-x-2 px-4 py-2 text-sm bg-gradient-to-r from-brand-primary to-brand-accent text-white font-semibold rounded-lg hover:from-brand-accent hover:to-brand-highlight transition-all duration-300 transform hover:scale-105 shadow-lg font-poppins"
+                className="hidden lg:flex items-center space-x-2 px-4 py-2 text-sm bg-gradient-to-r from-brand-primary to-brand-accent text-white font-semibold rounded-lg hover:from-brand-accent hover:to-brand-highlight transition-all duration-300 transform hover:scale-105 shadow-lg font-poppins"
               >
                 <UserPlus className="w-4 h-4" />
                 <span>Sign Up</span>
@@ -1222,16 +1214,120 @@ function App() {
                   <Moon className="w-5 h-5 text-brand-heading" />
                 )}
               </button>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="lg:hidden p-3 rounded-xl bg-white/20 dark:bg-brand-dark-card/20 backdrop-blur-sm border border-brand-border/30 dark:border-brand-dark-border/30 hover:bg-white/30 dark:hover:bg-brand-dark-card/30 transition-all duration-300 shadow-lg"
+                aria-label="Toggle mobile menu"
+              >
+                {mobileMenuOpen ? (
+                  <X className="w-5 h-5 text-brand-heading dark:text-brand-dark-heading" />
+                ) : (
+                  <Menu className="w-5 h-5 text-brand-heading dark:text-brand-dark-heading" />
+                )}
+              </button>
             </div>
           </div>
+
+          {/* Mobile Navigation Menu */}
+          {mobileMenuOpen && (
+            <div className="lg:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-brand-dark-card/95 backdrop-blur-sm border-t border-brand-border/30 dark:border-brand-dark-border/30 shadow-xl animate-slide-up">
+              <div className="max-w-7xl mx-auto px-6 py-4 space-y-4">
+                <a 
+                  href="#features" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('features');
+                  }}
+                  className="flex items-center space-x-3 text-brand-body dark:text-brand-dark-body hover:text-brand-primary dark:hover:text-brand-dark-primary transition-colors duration-300 font-poppins font-medium py-2"
+                >
+                  <Zap className="w-4 h-4" />
+                  <span>Features</span>
+                </a>
+                <a 
+                  href="#how-it-works" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('how-it-works');
+                  }}
+                  className="flex items-center space-x-3 text-brand-body dark:text-brand-dark-body hover:text-brand-primary dark:hover:text-brand-dark-primary transition-colors duration-300 font-poppins font-medium py-2"
+                >
+                  <Info className="w-4 h-4" />
+                  <span>How It Works</span>
+                </a>
+                <a 
+                  href="#about" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('about');
+                  }}
+                  className="flex items-center space-x-3 text-brand-body dark:text-brand-dark-body hover:text-brand-primary dark:hover:text-brand-dark-primary transition-colors duration-300 font-poppins font-medium py-2"
+                >
+                  <HelpCircle className="w-4 h-4" />
+                  <span>About</span>
+                </a>
+                <a 
+                  href="#contact" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('contact');
+                  }}
+                  className="flex items-center space-x-3 text-brand-body dark:text-brand-dark-body hover:text-brand-primary dark:hover:text-brand-dark-primary transition-colors duration-300 font-poppins font-medium py-2"
+                >
+                  <Mail className="w-4 h-4" />
+                  <span>Contact</span>
+                </a>
+                
+                <div className="border-t border-brand-border/30 dark:border-brand-dark-border/30 pt-4 space-y-3">
+                  <button
+                    onClick={() => {
+                      setShowDemo(true);
+                      setMobileMenuOpen(false);
+                    }}
+                    className="w-full flex items-center justify-center space-x-2 px-4 py-3 text-sm bg-gradient-to-r from-purple-500 to-purple-600 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-purple-700 transition-all duration-300 shadow-lg font-poppins"
+                  >
+                    <Monitor className="w-4 h-4" />
+                    <span>Try Demo</span>
+                  </button>
+                  
+                  <div className="flex space-x-3">
+                    <button
+                      onClick={() => {
+                        handleLogin();
+                        setMobileMenuOpen(false);
+                      }}
+                      className="flex-1 flex items-center justify-center space-x-2 px-4 py-3 text-sm border border-brand-border dark:border-brand-dark-border text-brand-heading dark:text-brand-dark-heading hover:bg-brand-primary hover:text-white dark:hover:bg-brand-dark-primary transition-all duration-300 rounded-lg font-poppins font-medium"
+                    >
+                      <LogIn className="w-4 h-4" />
+                      <span>Login</span>
+                    </button>
+                    <button
+                      onClick={() => {
+                        handleSignup();
+                        setMobileMenuOpen(false);
+                      }}
+                      className="flex-1 flex items-center justify-center space-x-2 px-4 py-3 text-sm bg-gradient-to-r from-brand-primary to-brand-accent text-white font-semibold rounded-lg hover:from-brand-accent hover:to-brand-highlight transition-all duration-300 shadow-lg font-poppins"
+                    >
+                      <UserPlus className="w-4 h-4" />
+                      <span>Sign Up</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </header>
+
+        {/* Demo Modal */}
+        <DemoModal isOpen={showDemo} onClose={() => setShowDemo(false)} />
 
         {/* Main Content */}
         <main className="relative z-10 pt-6 pb-16">
           <div className="max-w-7xl mx-auto px-6">
             
             {/* Hero Section */}
-            <div className="text-center mb-16 animate-fade-in">
+            <div className="text-center mb-20 animate-fade-in">
               {/* AI Badge */}
               <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-brand-accent/10 to-brand-highlight/10 dark:from-brand-dark-primary/20 dark:to-brand-dark-secondary/20 px-4 py-2 rounded-full mb-6 border border-brand-accent/20 dark:border-brand-dark-primary/30 animate-bounce-slow">
                 <Bot className="w-4 h-4 text-brand-accent dark:text-brand-dark-primary" />
@@ -1253,26 +1349,25 @@ function App() {
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8 animate-slide-up" style={{ animationDelay: '400ms' }}>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-slide-up" style={{ animationDelay: '400ms' }}>
                 <button
-                  onClick={handleGetStarted}
-                  className="group px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-accent text-white font-bold rounded-xl hover:from-brand-accent hover:to-brand-highlight transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-brand-primary/30 flex items-center space-x-3 font-poppins text-lg shadow-xl"
+                  onClick={() => setShowDemo(true)}
+                  className="flex items-center space-x-2 px-8 py-4 text-lg bg-gradient-to-r from-brand-primary to-brand-accent text-white font-semibold rounded-xl hover:from-brand-accent hover:to-brand-highlight transition-all duration-300 transform hover:scale-105 shadow-xl font-poppins"
                 >
-                  <span>Get Started</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </button>
-                
-                <button
-                  onClick={handleTryDemo}
-                  className="group px-8 py-4 bg-white/90 dark:bg-brand-dark-card/90 text-brand-primary dark:text-brand-dark-primary font-semibold rounded-xl hover:bg-white dark:hover:bg-brand-dark-card border-2 border-brand-primary/20 dark:border-brand-dark-primary/30 hover:border-brand-primary dark:hover:border-brand-dark-primary transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center space-x-3 font-poppins backdrop-blur-sm"
-                >
-                  <Play className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                  <Monitor className="w-5 h-5" />
                   <span>Try Demo</span>
+                </button>
+                <button
+                  onClick={() => scrollToSection('contact')}
+                  className="flex items-center space-x-2 px-8 py-4 text-lg border-2 border-brand-primary dark:border-brand-dark-primary text-brand-primary dark:text-brand-dark-primary hover:bg-brand-primary hover:text-white dark:hover:bg-brand-dark-primary dark:hover:text-white transition-all duration-300 rounded-xl font-poppins font-semibold"
+                >
+                  <ArrowRight className="w-5 h-5" />
+                  <span>Get Started</span>
                 </button>
               </div>
 
-              {/* Enhanced Hero Illustration with Housing Theme */}
-              <div className="flex justify-center mb-8 animate-slide-up" style={{ animationDelay: '600ms' }}>
+              {/* Enhanced Hero Illustration with Housing Theme - More Space */}
+              <div className="flex justify-center mb-16 animate-slide-up" style={{ animationDelay: '600ms' }}>
                 <div className="relative">
                   {/* Main community illustration */}
                   <div className="relative">
@@ -1293,8 +1388,42 @@ function App() {
               </div>
             </div>
 
+            {/* Features Section */}
+            <div id="features" className="mb-16">
+              <h2 className="text-2xl md:text-3xl font-bold text-brand-heading dark:text-brand-dark-heading text-center mb-3 font-poppins animate-slide-up">
+                What's Coming
+              </h2>
+              <p className="text-brand-body dark:text-brand-dark-body text-center mb-12 max-w-2xl mx-auto text-sm font-open-sans animate-slide-up" style={{ animationDelay: '200ms' }}>
+                Experience the future of accommodation discovery with these powerful features
+              </p>
+              
+              <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <FeatureCard
+                  icon={Building}
+                  title="PG & Flat Listings"
+                  description="Verified accommodations in your city with detailed photos, amenities, and transparent pricing. Browse through hundreds of options with virtual tours and instant booking."
+                  delay={400}
+                  illustration="bg-gradient-to-br from-blue-500 to-blue-600"
+                />
+                <FeatureCard
+                  icon={Brain}
+                  title="AI Matchmaking"
+                  description="Personalized roommate matching using advanced AI algorithms to find compatible living partners based on lifestyle, preferences, and personality traits."
+                  delay={600}
+                  illustration="bg-gradient-to-br from-purple-500 to-purple-600"
+                />
+                <FeatureCard
+                  icon={Lock}
+                  title="Secure Connect"
+                  description="Chat safely with verified users before finalizing your stay. Our secure platform ensures your privacy while you find your perfect living arrangement."
+                  delay={800}
+                  illustration="bg-gradient-to-br from-green-500 to-green-600"
+                />
+              </div>
+            </div>
+
             {/* How It Works Section with Mockups */}
-            <div className="mb-16">
+            <div id="how-it-works" className="mb-16">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold text-brand-heading dark:text-brand-dark-heading mb-4 font-poppins animate-slide-up">
                   How It Works
@@ -1344,42 +1473,8 @@ function App() {
               </div>
             </div>
 
-            {/* Enhanced Feature Preview Section */}
-            <div className="mb-16">
-              <h2 className="text-2xl md:text-3xl font-bold text-brand-heading dark:text-brand-dark-heading text-center mb-3 font-poppins animate-slide-up">
-                What's Coming
-              </h2>
-              <p className="text-brand-body dark:text-brand-dark-body text-center mb-12 max-w-2xl mx-auto text-sm font-open-sans animate-slide-up" style={{ animationDelay: '200ms' }}>
-                Experience the future of accommodation discovery with these powerful features
-              </p>
-              
-              <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <FeatureCard
-                  icon={Building}
-                  title="PG & Flat Listings"
-                  description="Verified accommodations in your city with detailed photos, amenities, and transparent pricing. Browse through hundreds of options with virtual tours and instant booking."
-                  delay={400}
-                  illustration="bg-gradient-to-br from-blue-500 to-blue-600"
-                />
-                <FeatureCard
-                  icon={Brain}
-                  title="AI Matchmaking"
-                  description="Personalized roommate matching using advanced AI algorithms to find compatible living partners based on lifestyle, preferences, and personality traits."
-                  delay={600}
-                  illustration="bg-gradient-to-br from-purple-500 to-purple-600"
-                />
-                <FeatureCard
-                  icon={Lock}
-                  title="Secure Connect"
-                  description="Chat safely with verified users before finalizing your stay. Our secure platform ensures your privacy while you find your perfect living arrangement."
-                  delay={800}
-                  illustration="bg-gradient-to-br from-green-500 to-green-600"
-                />
-              </div>
-            </div>
-
             {/* Why Choose ApanaGhr Section */}
-            <div className="mb-16">
+            <div id="about" className="mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-brand-heading dark:text-brand-dark-heading text-center mb-3 font-poppins animate-slide-up">
                 Why Choose ApanaGhr?
               </h2>
@@ -1424,19 +1519,18 @@ function App() {
               <CountdownTimer />
             </div>
 
-            {/* Email Signup Section */}
-            <div id="email-signup" className="mb-16">
-              <div className="text-center mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-brand-heading dark:text-brand-dark-heading mb-4 font-poppins animate-slide-up">
-                  Be the First to Know
-                </h2>
-                <p className="text-brand-body dark:text-brand-dark-body max-w-2xl mx-auto font-open-sans animate-slide-up" style={{ animationDelay: '200ms' }}>
-                  Get early access and exclusive updates when we launch. Join thousands of others waiting for the future of housing.
-                </p>
-              </div>
+            {/* Contact/Email Form Section */}
+            <div id="contact" className="mb-12">
+              <div className="max-w-md mx-auto animate-slide-up" style={{ animationDelay: '1200ms' }}>
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-brand-heading dark:text-brand-dark-heading mb-2 font-poppins">
+                    Get Early Access
+                  </h3>
+                  <p className="text-brand-body dark:text-brand-dark-body font-open-sans">
+                    Be the first to know when we launch
+                  </p>
+                </div>
 
-              {/* Email Form */}
-              <div className="max-w-md mx-auto animate-slide-up" style={{ animationDelay: '400ms' }}>
                 {!isSubmitted ? (
                   <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
                     <div className="flex-1 relative group">
@@ -1478,7 +1572,7 @@ function App() {
             </div>
 
             {/* Trust Indicators */}
-            <div className="text-center animate-fade-in" style={{ animationDelay: '600ms' }}>
+            <div className="text-center animate-fade-in" style={{ animationDelay: '1400ms' }}>
               <div className="inline-flex items-center space-x-2 text-brand-body dark:text-brand-dark-body">
                 <Heart className="w-4 h-4 text-red-500" />
                 <span className="font-open-sans text-sm">Join thousands waiting for the future of housing</span>
