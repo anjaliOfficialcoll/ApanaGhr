@@ -1,8 +1,3 @@
-Absolutely! Here's your **correctly formatted and fully complete `README.md`** – with all code blocks properly closed and ready to paste into GitHub:
-
----
-
-```markdown
 # 🏠 ApanaGhr - Smarter Room & Roommate Matching
 
 🚀 **ApanaGhr** is a modern, AI-powered landing page for a platform designed to help users find compatible roommates and accommodations with ease. This landing page highlights features, a launch countdown, and email notification collection.
@@ -38,6 +33,8 @@ Absolutely! Here's your **correctly formatted and fully complete `README.md`** �
 ---
 
 ## 📂 Project Structure
+
+
 
 ```
 
